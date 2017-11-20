@@ -56,7 +56,7 @@ window.onload = function() {
             addNewPoint: function() {
                 if (!points.find((p) => p.x == this.x && p.y == this.y))
                     points.push({x: parseFloat(this.x), y: parseFloat(this.y)});
-                    drawer.drawPoint(parseFloat(this.x), parseFloat(this.y), "red", 1, true);
+                    drawer.drawPoint(parseFloat(this.x), parseFloat(this.y), "black", 1, true);
             }
         }
     });
