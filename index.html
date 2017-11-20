@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Approximator</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://unpkg.com/vue"></script>
+    <script type="text/javascript" src="PlotsDrawer.js"></script>
+    <script type="text/javascript" src="Approximations.js"></script>
+</head>
+<body>
+<header>
+    <h1>Approximator</h1>
+    <h5>Made by: Gorbunov Mikhail, ITMO University, gr. P3217</h5>
+</header>
+<main>
+    <section id="plots-wrapper">
+        <canvas id="mycanvas" width="450px" height="450px" style="border: 1px solid black"></canvas>
+        <form id="frame-limits-form" v-on:submit.prevent="update">
+            <label for="left-limit">Left limit:</label>
+            <input id="left-frame-limit" title="Enter frame limit (any real number)" name="left-limit" type="text" v-bind:pattern="numPattern" v-model="left">
+            <label for="right-limit">Right limit:</label>
+            <input id="right-frame-limit" title="Enter frame limit (any real number)" name="right-limit" type="text" v-bind:pattern="numPattern" v-model="right">
+            <label for="bottom-limit">Bottom limit:</label>
+            <input id="bottom-frame-limit" title="Enter frame limit (any real number)" name="bottom-limit" type="text" v-bind:pattern="numPattern" v-model="bottom">
+            <label for="top-limit">Top limit:</label>
+            <input id="top-frame-limit" title="Enter frame limit (any real number)" name="top-limit" type="text" v-bind:pattern="numPattern" v-model="top">
+            <button type="submit">Update</button>
+        </form>
+        <button id="rm-plots">Remove plots</button>
+    </section>
+    <section id="approx-wrapper">
+        <div id="points-controls">
+            <h2 class="subsection-title">Points</h2>
+            <form id="new-point-form" v-on:submit.prevent="addNewPoint">
+                <label for="new-point-x">X</label>
+                <input id="new-point-x" title="Enter coordinate (any real value)" name="new-point-x" type="text" v-bind:pattern="numPattern" v-model="x">
+                <label for="new-point-y">Y</label>
+                <input id="new-point-y" title="Enter coordinate (any real value)" name="new-point-y" type="text" v-bind:pattern="numPattern" v-model="y">
+                <button id="add-new-point" type="submit">Add point</button>
+            </form>
+            <div id="points-container">
+                <p class="point" title="Click to delete" v-for="point in points" v-on:click="removePoint(point.x, point.y)">
+                    (<span class="coordinate" v-bind:title="point.x">{{point.x}}</span>; 
+                    <span class="coordinate" v-bind:title="point.x">{{point.y}}</span>)
+                </p>
+                <!-- <point v-for="point in points" v-bind:x="point.x" y="point.y"></point> -->
+            </div>
+            <button id="rm-all-points">Remove all points</button>
+        </div>
+        <div id="approx-controls">
+            <h2 class="subsection-title">Approximation</h2>
+            <form id="approx-select-form">
+                <label for="approx-selector">Approximation type</label>
+                <select id="approx-selector" name="approx-selector" v-model="currentApprox">
+                    <option value="linear">Linear</option>
+                    <option value="parabolic">Parabolic</option>
+                    <option value="hyperbolic">Hyperbolic</option>
+                    <option value="logarithmic">Logarithmic</option>
+                    <option value="exponential">Exponential</option>
+                </select>
+            </form>
+            <button id="approximate" v-bind:disabled="disabled" v-on:click="approximate">Approximate</button>
+            <div id="coeffs-before" v-if="seen">
+                <h3 class="coeffs-title">Coefficients before</h3>
+                <div v-for="coeff in coeffs">{{coeff.name}}: {{coeff.value}}</div>
+            </div>
+            <div id="coeffs-after" v-if="seen">
+                <h3 class="coeffs-title">Coefficients after</h3>
+                <div v-for="coeff in coeffs">{{coeff.name}}: {{coeff.value}}</div>
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+<script type="text/javascript" src="script.js"></script>
+</html>
