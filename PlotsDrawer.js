@@ -388,9 +388,11 @@ class PlotsDrawer {
         var pointX = pointXpx*this.drawer.scaleX;
         var pointY = pointYpx*this.drawer.scaleY;
 
-        this.drawer.drawPoint(pointX, pointY, this.drawer.onclickFillStyle, this.drawer.onclickSize);
+        if (!this.drawer.points.find((p) => pointX == p.x && pointY == p.y)) {
+            this.drawer.drawPoint(pointX, pointY, this.drawer.onclickFillStyle, this.drawer.onclickSize);
 
-        if (this.drawer.onclickCallback && typeof this.drawer.onclickCallback === 'function')
-            this.drawer.onclickCallback(pointX, pointY);
+            if (this.drawer.onclickCallback && typeof this.drawer.onclickCallback === 'function')
+                this.drawer.onclickCallback(pointX, pointY);
+        }
     }
 }
