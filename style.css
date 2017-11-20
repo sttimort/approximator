@@ -1,0 +1,153 @@
+body {
+  width: 700px;
+  margin: 8px auto;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+header {
+  margin-bottom: 30px;
+}
+
+h1, h2, h5 {
+  margin: 0;
+  font-weight: normal;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 450px 1fr;
+}
+
+canvas {
+  cursor: crosshair;
+}
+
+.subsection-title, #new-point-form {
+  margin: 0;
+  background-color: #53de53;
+  color: white;
+}
+
+.subsection-title {
+  font-size: 1.2em;
+  padding: 0 15px;
+}
+
+#points-controls {
+  margin: 0;
+}
+
+label {
+  background-color: orange;
+  text-align: center;
+  color: white;
+  font-size: 14px;
+}
+
+#new-point-form {
+  display: grid;
+  grid-template-columns: 20px 60px 20px 60px 1fr;
+}
+
+#points-container {
+  padding: 10px;
+  background-color: lightgray;
+  height: 80px;
+  overflow: scroll;
+}
+
+#rm-all-points, #approximate, #rm-plots {
+  width: 100%;
+  border: none;
+  color: white;
+  height: 30px;
+  font-size: 14px;
+}
+
+#rm-all-points, #rm-plots {
+  background: #f009;
+}
+
+#approximate {
+  background-color: lightgreen;
+}
+
+#add-new-point {
+  background: lightgreen;
+  border: none;
+  color: white;
+  font-size: 14px;
+}
+
+.point {
+  display: inline-block;
+  margin: 2px 5px;
+  font-size: 14px;
+  border-radius: 3px;
+  border: 1px black solid;
+  padding: 1px 4px;
+  background-color: white;
+}
+
+.point:hover {
+  background-color: #fe6262;
+  cursor: pointer;
+}
+
+.coordinate {
+  display: inline-block;
+  max-width: 35px;
+  overflow-x: hidden;
+  text-overflow:  ellipsis;
+  vertical-align: middle;
+}
+
+
+#approx-wrapper {
+  margin: 0 5px;
+}
+
+#approx-controls {
+  margin-top: 20px;
+}
+
+#approx-select-form {
+ display: grid;
+ grid-template-columns: 60% 40%;
+}
+
+#approx-controls label {
+  font-size: 14px;
+  padding: 0 10px;
+  height: 20px;
+  /*! background-color: orange; */
+}
+
+#approximate {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+#frame-limits-form {
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  grid-template-rows: 20px 20px;
+}
+
+#frame-limits-form label[for="left-limit"], label[for="bottom-limit"] {
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+#frame-limits-form label[for="right-limit"], label[for="top-limit"] {
+  grid-column-start: 3;
+  grid-column-end: 4;
+}
+
+#frame-limits-form button {
+  grid-column-start: 5;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  background-color: #faff33;
+  border: none;
+}
